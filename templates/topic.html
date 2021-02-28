@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
 
-    <body>
-        <h1>{{topic}}</h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
+
+    <title>{{topic}}</title>
+</head>
+
+<body>
+    <h1 id="title">{{topic}}</h1>
+    
+    <div class="split" id="convos">
+        Conversations
+    </div>
+    <div class="split" id="post">
+        Post
+    </div>
+</body>
+
+<script>
+    Split(["#convos", "#post"]);
+</script>
+
+<style>
+    .split,
+    .gutter.gutter-horizontal {
+        float: left;
+    }
+
+    .gutter.gutter-horizontal {
+        cursor: ew-resize;
+    }
+
+    html,
+    body {
+        overflow: hidden;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #title {
+        margin: 0;
+        height: 4%;
+    }
+
+    #convos,
+    #post {
+        border: 1px solid black;
+        height: 96%;
+    }
+</style>
+
 </html>

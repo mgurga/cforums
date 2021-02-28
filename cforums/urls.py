@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import home_view
-from .views import topic_view
+from .views import post_view
+
+from cforums.topic.views import TopicView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
-    path('topics/<str:topic>', topic_view)
+    path('topic/<str:topic>', TopicView.as_view()),
+    path('topic/<str:topic>/post', post_view)
 ]

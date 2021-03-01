@@ -2,7 +2,7 @@ from django.db import models
 
 class Image(models.Model):
     filename = models.CharField(max_length=100)
-    file = models.ImageField(upload_to="static/uploads/%Y/%m/%d/")
+    file = models.ImageField(upload_to="uploads/%Y/%m/%d/")
 
     class Meta:
         managed = False

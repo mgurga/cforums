@@ -1,10 +1,58 @@
 
-from django.http import HttpResponse, JsonResponse
+import datetime
+
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.conf import settings
+
+from .forms import PostForm
+
+from .models import Post
+from .models import Reply
+from .models import Image
 
 def home_view(request):
     return render(request, "home.html", {"topics": settings.TOPICS, "forumtitle": settings.TITLE})
 
-def topic_view(request, topic):
-    return render(request, "topic.html", {"topic": topic})
+def post_view(request, topic):
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            postimage = Image.objects.create(
+                file=request.FILES["image"],
+                filename=request.FILES["image"].name
+            )
+
+            postimage.save()
+
+            newpost = Post.objects.create(
+                pid=get_id(),
+                title=form.cleaned_data["title"],
+                pinned=False,
+                topic=topic,
+                body=form.cleaned_data["body"],
+                creation_date=datetime.datetime.now(),
+            )
+
+            newpost.images.add(postimage)
+
+            newpost.save()
+
+            return HttpResponseRedirect("/topic/" + topic)
+    else:
+        form = PostForm()
+
+    return render(request, "post.html", {"form": form, "topic": topic})
+
+def get_id():
+    try:
+        pid = Post.objects.latest("creation_date").pid
+    except Post.DoesNotExist:
+        pid = 0
+
+    try:
+        rid = Reply.objects.latest("creation_date").rid
+    except Reply.DoesNotExist:
+        rid = 0
+
+    return pid + rid + 1

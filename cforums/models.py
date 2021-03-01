@@ -4,6 +4,9 @@ class Image(models.Model):
     filename = models.CharField(max_length=100)
     file = models.ImageField(upload_to="uploads/%Y/%m/%d/")
 
+    class Meta:
+        managed = False
+
 class Post(models.Model):
     pid = models.PositiveIntegerField()
     pinned = models.BooleanField()
@@ -13,6 +16,9 @@ class Post(models.Model):
     creation_date = models.DateTimeField()
     images = models.ManyToManyField(Image)
 
+    class Meta:
+        managed = False
+
 class Reply(models.Model):
     rid = models.PositiveIntegerField()
     topic = models.CharField(max_length=100)
@@ -21,3 +27,6 @@ class Reply(models.Model):
     reply_to = models.PositiveIntegerField()
     creation_date = models.DateTimeField()
     images = models.ManyToManyField(Image)
+
+    class Meta:
+        managed = False

@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 
 from .views import home_view
 from .views import post_view
+from .views import full_post
 
 from cforums.topic.views import TopicView
 
@@ -25,5 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
     path('topic/<str:topic>', TopicView.as_view()),
-    path('topic/<str:topic>/post', post_view)
+    path('topic/<str:topic>/post', post_view),
+    path('topic/<str:topic>/<int:id>', full_post)
 ]

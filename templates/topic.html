@@ -14,6 +14,7 @@
 
 <body>
     <div id="header">
+        <h1 id="backbtn"><a href="/">&lt;</a></h1>
         <h1 id="title">{{topic}}</h1>
         <a href="/topic/{{topic}}/post">Post</a>
     </div>
@@ -30,6 +31,7 @@
                 <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
             </div>
         </div>
+        <br>
         {% endfor %}
     </div>
     <div class="split" id="post">
@@ -69,9 +71,11 @@
         height: 4%;
     }
 
-    #title {
+    #title,
+    #backbtn {
         margin: 0;
         display: inline-block;
+        padding-right: 10px;
     }
 
     #convos,

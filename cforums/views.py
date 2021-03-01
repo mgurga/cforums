@@ -1,9 +1,8 @@
 
-import datetime
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.conf import settings
+from django.utils import timezone
 
 from .forms import PostForm
 
@@ -31,7 +30,7 @@ def post_view(request, topic):
                 pinned=False,
                 topic=topic,
                 body=form.cleaned_data["body"],
-                creation_date=datetime.datetime.now(),
+                creation_date=timezone.localtime(),
             )
 
             newpost.images.add(postimage)

@@ -5,19 +5,19 @@ class Image(models.Model):
     file = models.ImageField(upload_to="uploads/%Y/%m/%d/")
 
 class Post(models.Model):
+    pid = models.PositiveIntegerField()
     pinned = models.BooleanField()
     topic = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     body = models.TextField()
-    id = models.BigAutoField()
     creation_date = models.DateTimeField()
     images = models.ManyToManyField(Image)
 
 class Reply(models.Model):
+    rid = models.PositiveIntegerField()
     topic = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     body = models.TextField()
-    reply_to = models.BigAutoField()
-    id = models.BigAutoField()
+    reply_to = models.PositiveIntegerField()
     creation_date = models.DateTimeField()
     images = models.ManyToManyField(Image)

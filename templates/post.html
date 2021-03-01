@@ -5,15 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post</title>
+    <title>Full Post</title>
 </head>
 
 <body>
-    <form action="/topic/{{topic}}/post" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit">
-    </form>
+    <p>[id: {{post.pid}}] [posted: {{post.creation_date}}] [pinned: {{post.pinned}}] [topic: {{post.topic}}]</p>
+    <img src="/{{image.file}}" width="100%">
+    <h1>{{post.title}}</h1>
+    <p>{{post.body}}</p>
+    <br>
+    <a href="/topic/{{topic}}/{{post.pid}}/reply">Reply</a>
 </body>
+
+<style>
+    h1, p {
+        margin: 0;
+    }
+</style>
 
 </html>

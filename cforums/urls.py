@@ -19,8 +19,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from .views import home_view
+from .views import post_form
 from .views import post_view
-from .views import full_post
+from .views import replies_view
+from .views import reply_form
 
 from cforums.topic.views import TopicView
 
@@ -28,6 +30,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
     path('topic/<str:topic>', TopicView.as_view()),
-    path('topic/<str:topic>/post', post_view),
-    path('topic/<str:topic>/<int:id>', full_post)
+    path('topic/<str:topic>/post', post_form),
+    path('topic/<str:topic>/<int:id>', post_view),
+    path('topic/<str:topic>/<int:id>/reply', reply_form),
+    path('topic/<str:topic>/<int:id>/replies', replies_view)
 ]

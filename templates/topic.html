@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/static/common.js"></script>
 
     <title>{{topic}}</title>
 </head>
@@ -18,39 +18,42 @@
         <h1 id="title">{{topic}}</h1>
         <a href="/topic/{{topic}}/post">Post</a>
     </div>
-    
+
     <div class="split" id="convos">
         <!-- Conversations -->
         {% for post in posts %}
         <button onclick="loadreplies({{post.id}});">+</button>
         <div class="postdiv">
             <div class="postinfo">
-                <a onclick="loadid({{post.id}}); return true;" href="#{{post.id}}" class="posttitle">{{post.title}}</a>
-                <label>[id: {{post.id}}]</label>
-                <label>[date: {{post.creation_date}}]</label>
+                <a onclick="loadpost({{post.id}}); return true;" href="#{{post.id}}"
+                    class="posttitle">{{post.title}}</a>
+                <label class="extrainfo">[id: {{post.id}}]</label>
+                <label class="extrainfo">[date: {{post.creation_date}}]</label>
                 <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
             </div>
         </div>
+        <br>
         <div class="postrepliesdiv" id="postreplies-{{post.id}}"></div>
         {% endfor %}
     </div>
     <div class="split" id="post">
         <!-- Post -->
-
     </div>
 </body>
 
 <script>
     Split(["#convos", "#post"]);
 
-    function loadid(id) {
+    function loadpost(id) {
         console.log("loading post id " + id + " in right pane");
-        $("#post").load(window.location.origin + "/topic/{{topic}}/" + id);
+        loadhtml(document.getElementById("post"),
+            window.location.origin + "/topic/{{topic}}/" + id);
     }
 
     function loadreplies(id) {
         console.log("loading replies to post id " + id);
-        $("#postreplies-" + id).load(window.location.origin + "/topic/{{topic}}/" + id + "/replies");
+        loadhtml(document.getElementById("postreplies-" + id),
+            window.location.origin + "/topic/{{topic}}/" + id + "/replies");
     }
 </script>
 
@@ -87,10 +90,11 @@
     #post {
         border: 1px solid black;
         height: 95%;
+        overflow: auto;
     }
 
     .postdiv,
-    .postinfo
+    .postinfo,
     .postrepliesdiv {
         display: inline-block;
     }
@@ -105,8 +109,13 @@
         margin: 0;
     }
 
-    .postrepliesdiv {
-        padding-left: 20px;
+    .posttitle:hover ~ .extrainfo {
+        visibility: visible;
+    }
+
+    .extrainfo {
+        font-size: 12px;
+        visibility: hidden;
     }
 </style>
 

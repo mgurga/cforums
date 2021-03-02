@@ -89,7 +89,11 @@ def replies_view(request, topic, id):
             "creation_date": reply.creation_date
         }
         replyout.append(simplereply)
-    return render(request, "postreplies.html", {"replies": replyout})
+    
+    if replyout == []:
+        return render(request, "postreplies.html")
+    else:
+        return render(request, "postreplies.html", {"replies": replyout})
 
 def get_id(topic):
     try:

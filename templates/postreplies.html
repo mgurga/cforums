@@ -9,29 +9,36 @@
 </head>
 
 <body>
-    {% for reply in replies %}
-    <div class="replydiv">
-        <button onclick="loadreplies({{reply.id}});">+</button>
-        <div class="replyinfo">
-            <a onclick="loadid({{reply.id}}); return true;" href="#{{reply.id}}" class="posttitle">{{reply.title}}</a>
-            <label>[id: {{reply.id}}]</label>
-            <label>[date: {{reply.creation_date}}]</label>
-            <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
+    {% if replies %}
+        {% for reply in replies %}
+        <div class="replydiv">
+            <button onclick="loadreplies({{reply.id}});">+</button>
+            <div class="replyinfo">
+                <a onclick="loadpost({{reply.id}}); return true;" href="#{{reply.id}}" class="posttitle">{{reply.title}}</a>
+                <label class="extrainfo">[id: {{reply.id}}]</label>
+                <label class="extrainfo">[date: {{reply.creation_date}}]</label>
+                <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
+            </div>
+            <br>
+            <div class="postrepliesdiv" id="postreplies-{{reply.id}}"></div>
         </div>
+        {% endfor %}
+    {% else %}
+    <div class="replydiv">
+        <label>No Replies</label>
     </div>
-    {% endfor %}
+    {% endif %}
 </body>
 
 <style>
-    .replydiv, .replyinfo {
+    .replydiv,
+    .replyinfo {
         display: inline-block;
     }
-</style>
 
-<script>
-    function loadreplies(id) {
-
+    .replydiv {
+        padding-left: 20px;
     }
-</script>
+</style>
 
 </html>

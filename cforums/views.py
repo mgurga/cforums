@@ -7,7 +7,6 @@ from django.utils import timezone
 from .forms import PostForm
 
 from .models import Post
-from .models import Reply
 from .models import Image
 
 def home_view(request):
@@ -28,6 +27,7 @@ def post_form(request, topic):
                 pid=get_id(topic),
                 title=form.cleaned_data["title"],
                 pinned=False,
+                reply_to=0,
                 topic=topic,
                 body=form.cleaned_data["body"],
                 creation_date=timezone.now(),
@@ -54,8 +54,8 @@ def reply_form(request, topic, id):
 
             postimage.save()
 
-            newrep = Reply.objects.create(
-                rid=get_id(topic),
+            newrep = Post.objects.create(
+                pid=get_id(topic),
                 reply_to=id,
                 title=form.cleaned_data["title"],
                 pinned=False,
@@ -80,9 +80,16 @@ def post_view(request, topic, id):
     return render(request, "post.html", {"topic": topic, "post": post, "image": images})
 
 def replies_view(request, topic, id):
-    replies = Reply.objects.filter(reply_to=id)
-    images = replies.images.all().first()
-    return render(request, "postreplies.html", {"image": images})
+    replies = Post.objects.filter(reply_to=id)
+    replyout = []
+    for reply in replies:
+        simplereply = {
+            "title": reply.title,
+            "id": reply.pid,
+            "creation_date": reply.creation_date
+        }
+        replyout.append(simplereply)
+    return render(request, "postreplies.html", {"replies": replyout})
 
 def get_id(topic):
     try:
@@ -90,9 +97,4 @@ def get_id(topic):
     except Post.DoesNotExist:
         pid = 0
 
-    try:
-        rid = Reply.objects.filter(topic=topic).latest("creation_date").rid
-    except Reply.DoesNotExist:
-        rid = 0
-
-    return pid + rid + 1
+    return pid + 1

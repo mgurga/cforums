@@ -29,7 +29,7 @@ from cforums.topic.views import TopicView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
-    path('topic/<str:topic>', TopicView.as_view()),
+    path('topic/<str:topic>/', TopicView.as_view()),
     path('topic/<str:topic>/post', post_form),
     path('topic/<str:topic>/<int:id>', post_view),
     path('topic/<str:topic>/<int:id>/reply', reply_form),

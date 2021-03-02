@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db import OperationalError
 
 from cforums.models import Post
-from cforums.models import Reply
 from cforums.models import Image
 
 class TopicView(View):
@@ -14,7 +13,7 @@ class TopicView(View):
         posts = []
 
         try:
-            for p in Post.objects.filter(topic=topic):
+            for p in Post.objects.filter(topic=topic, reply_to=0):
                 post = {
                     "title": p.title,
                     "creation_date": p.creation_date,

@@ -13,17 +13,13 @@
 </head>
 
 <body>
-    <div id="header">
-        <h1 id="backbtn"><a href="/">&lt;</a></h1>
-        <h1 id="title">{{topic}}</h1>
-        <a href="/topic/{{topic}}/post">Post</a>
-    </div>
+    {% include "topicheader.html" with topic=topic %}
 
     <div class="split" id="convos">
         <!-- Conversations -->
         {% for post in posts %}
-        <button onclick="loadreplies({{post.id}});">+</button>
         <div class="postdiv">
+            <button id="expandbtn-{{post.id}}" onclick="loadreplies({{post.id}});">+</button>
             <div class="postinfo">
                 <a onclick="loadpost({{post.id}}); return true;" href="#{{post.id}}"
                     class="posttitle">{{post.title}}</a>
@@ -31,8 +27,8 @@
                 <label class="extrainfo">[date: {{post.creation_date}}]</label>
                 <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
             </div>
+            <br class="postnewline">
         </div>
-        <br>
         <div class="postrepliesdiv" id="postreplies-{{post.id}}"></div>
         {% endfor %}
     </div>
@@ -47,13 +43,23 @@
     function loadpost(id) {
         console.log("loading post id " + id + " in right pane");
         loadhtml(document.getElementById("post"),
-            window.location.origin + "/topic/{{topic}}/" + id);
+            window.location.origin + "/topic/{{topic}}/" + id,
+            function() {});
     }
 
     function loadreplies(id) {
         console.log("loading replies to post id " + id);
-        loadhtml(document.getElementById("postreplies-" + id),
-            window.location.origin + "/topic/{{topic}}/" + id + "/replies");
+        if(document.getElementById("expandbtn-" + id).innerHTML == "-") {
+            document.getElementById("postreplies-" + id).innerHTML = "";
+            document.getElementById("expandbtn-" + id).innerHTML = "+";
+        } else {
+            document.getElementById("expandbtn-" + id).innerHTML = "O";
+            loadhtml(document.getElementById("postreplies-" + id),
+                window.location.origin + "/topic/{{topic}}/" + id + "/replies",
+                function() {
+                    document.getElementById("expandbtn-" + id).innerHTML = "-";
+                });
+        }
     }
 </script>
 
@@ -74,18 +80,6 @@
         padding: 0;
     }
 
-    #header {
-        margin: 0;
-        height: 4%;
-    }
-
-    #title,
-    #backbtn {
-        margin: 0;
-        display: inline-block;
-        padding-right: 10px;
-    }
-
     #convos,
     #post {
         border: 1px solid black;
@@ -93,9 +87,7 @@
         overflow: auto;
     }
 
-    .postdiv,
-    .postinfo,
-    .postrepliesdiv {
+    .postdiv > * {
         display: inline-block;
     }
 

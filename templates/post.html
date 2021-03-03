@@ -9,12 +9,14 @@
 </head>
 
 <body>
-    <p>[id: {{post.pid}}] [posted: {{post.creation_date}}] [pinned: {{post.pinned}}] [topic: {{post.topic}}]</p>
-    <img src="/{{image.file}}" width="100%">
-    <h1>{{post.title}}</h1>
-    <p>{{post.body}}</p>
-    <br>
-    <a href="/topic/{{topic}}/{{post.pid}}/reply">Reply</a>
+    <div class="fullpostdiv">
+        <p class="fullpostinfo">[id: {{post.pid}}] [posted: {{post.creation_date}}] [pinned: {{post.pinned}}] [topic: {{post.topic}}]</p>
+        <img class="fullpostimg" src="/{{image.file}}" width="100%">
+        <h1 class="fullposttitle">{{post.title}}</h1>
+        <p class="fullpostbody">{{post.body}}</p>
+        <br>
+        <a class="fullpostreply" href="/topic/{{topic}}/{{post.pid}}/reply">Reply</a>
+    </div>
 </body>
 
 <style>

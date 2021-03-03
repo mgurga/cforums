@@ -1,19 +1,26 @@
 <div id="header">
-    <h1 id="backbtn"><a href="/">&lt;</a></h1>
-    <h1 id="title">{{topic}}</h1>
-    <a href="/topic/{{topic}}/post">Post</a>
+    <a id="backbtn" href="/">&lt;</a>
+    <h1 id="headertitle">{{topic}}</h1>
+    <a id="postbtn" href="/topic/{{topic}}/post">Post</a>
+
+    {% include "themesmenu.html" with settings=settings %}
 </div>
 
 <style>
-    #header {
+    #headertitle {
         margin: 0;
         height: 4%;
     }
 
-    #title,
-    #backbtn {
+    #backbtn,
+    #headertitle,
+    #postbtn {
         margin: 0;
         display: inline-block;
         padding-right: 10px;
+    }
+
+    #backbtn {
+        font-size: 32px;
     }
 </style>

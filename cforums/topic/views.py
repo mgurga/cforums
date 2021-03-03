@@ -24,4 +24,4 @@ class TopicView(View):
         except OperationalError:
             pass
 
-        return render(request, "topic.html", {"topic": topic, "posts": posts})
+        return render(request, "topic.html", {"topic": topic, "posts": posts, "settings": settings})

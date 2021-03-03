@@ -1,0 +1,94 @@
+/* header div contains back button, title, and post button */
+#header {
+
+}
+
+/* back button in header */
+#backbtn {
+
+}
+
+/* topic title in header */
+#headertitle {
+
+}
+
+/* post button in header */
+#postbtn {
+
+}
+
+/* convos is left pane */
+#convos {
+
+}
+
+/* post is the right pane */
+#post {
+
+}
+
+/* post div contains expand button, title, extra info, replies, and new line */
+.postdiv {
+
+}
+
+/* button to expand post's replies */
+.postexpand {
+
+}
+
+/* post info contains title and extrainfo (creation date and id) */
+.postinfo {
+
+}
+
+/* post title */
+.posttitle {
+
+}
+
+/* id and creation date label */
+.extrainfo {
+
+}
+
+/* div contains each post's replies */
+.postrepliesdiv {
+
+}
+
+/* line break between posts */
+.postnewline {
+
+}
+
+/* a post on the right pane is called a fullpost and this div contains everything */
+.fullpostdiv {
+
+}
+
+/* fullpost information header, contains id, creation date, pinned, and topic */
+.fullpostinfo {
+
+}
+
+/* image inside of fullpost */
+.fullpostimg {
+
+}
+
+/* title of fullpost */
+.fullposttitle {
+
+}
+
+/* text body of a fullpost */
+.fullpostbody {
+
+}
+
+/* reply link of a fullpost */
+.fullpostreply {
+
+}

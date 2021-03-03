@@ -1,0 +1,26 @@
+#header,
+#post,
+#convos,
+#fullpostdiv {
+    background-color: black;
+}
+
+#convos,
+#post {
+    border: 1px solid white !important;
+}
+
+#headertitle,
+#themeslabel,
+.posttitle,
+.extrainfo,
+.fullpostinfo,
+.fullposttitle,
+.noreplytext {
+    color: white;
+}
+
+#backbtn,
+#postbtn {
+    color: lightblue;
+}

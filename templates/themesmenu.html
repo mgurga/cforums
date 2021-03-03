@@ -1,0 +1,47 @@
+<html>
+    <div id="themesmenu">
+        <label id="themeslabel">Themes:</label>
+        <select id="themesdropdown" onchange="themechange()" value>
+            {% for theme in settings.THEMES %}
+                {% if settings.DEFAULTTHEME == theme%}
+                <option selected value="{{theme}}">{{theme}}</option>
+                {% else %}
+                <option value="{{theme}}">{{theme}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <link id="csslink" rel="stylesheet" href="">
+    </div>
+
+    <style>
+        #themesmenu {
+            display: inline-block;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+    <script>
+        if(Cookies.get("theme") == undefined) {
+            Cookies.set("theme", "{{settings.DEFAULTTHEME}}");
+        }
+
+        settheme(Cookies.get("theme"));
+
+        function themechange() {
+            settheme(document.getElementById("themesdropdown").value);
+        }
+        
+        function settheme(theme) {
+            console.log("changing theme to " + theme);
+            Cookies.set("theme", theme);
+            document.getElementById("csslink").href = window.location.origin + "/static/themes/" + theme + ".css";
+            dropdown = document.getElementById("themesdropdown");
+            for(var i = 0; i < dropdown.options.length; i++) {
+                if(dropdown.options[i].value == theme) {
+                    dropdown.selectedIndex = i;
+                }
+            }
+        }
+    </script>
+</html>

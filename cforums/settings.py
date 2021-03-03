@@ -130,7 +130,7 @@ STATICFILES_DIRS = (
 
 TITLE = 'Demo Forum'
 TOPICS = ['technology', 'anime', 'television']
-DEFAULTTHEME = 'AMOLED Black'
+DEFAULTTHEME = 'Piercing White'
 THEMESFILES = os.listdir(os.path.join(STATICFILES_DIRS[0], 'themes'))
 THEMES = []
 for file in THEMESFILES:

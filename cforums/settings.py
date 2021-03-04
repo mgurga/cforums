@@ -131,6 +131,8 @@ STATICFILES_DIRS = (
 TITLE = 'Demo Forum'
 TOPICS = ['technology', 'anime', 'television']
 DEFAULTTHEME = 'Piercing White'
+UPLOADSIZELIMIT = 1 * 1024 * 1024 # size limit in bytes
+
 THEMESFILES = os.listdir(os.path.join(STATICFILES_DIRS[0], 'themes'))
 THEMES = []
 for file in THEMESFILES:

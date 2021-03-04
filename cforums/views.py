@@ -16,27 +16,7 @@ def post_form(request, topic):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            postimage = Image.objects.create(
-                file=request.FILES["image"],
-                filename=request.FILES["image"].name
-            )
-
-            postimage.save()
-
-            newpost = Post.objects.create(
-                pid=get_id(topic),
-                title=form.cleaned_data["title"],
-                pinned=False,
-                reply_to=0,
-                topic=topic,
-                body=form.cleaned_data["body"],
-                creation_date=timezone.now(),
-            )
-
-            newpost.images.add(postimage)
-
-            newpost.save()
-
+            makepost(form, request, topic, 0)
             return HttpResponseRedirect("/topic/" + topic)
     else:
         form = PostForm()
@@ -47,27 +27,7 @@ def reply_form(request, topic, id):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            postimage = Image.objects.create(
-                file=request.FILES["image"],
-                filename=request.FILES["image"].name
-            )
-
-            postimage.save()
-
-            newrep = Post.objects.create(
-                pid=get_id(topic),
-                reply_to=id,
-                title=form.cleaned_data["title"],
-                pinned=False,
-                topic=topic,
-                body=form.cleaned_data["body"],
-                creation_date=timezone.now(),
-            )
-
-            newrep.images.add(postimage)
-
-            newrep.save()
-
+            makepost(form, request, topic, id)
             return HttpResponseRedirect("/topic/" + topic)
     else:
         form = PostForm()
@@ -89,11 +49,33 @@ def replies_view(request, topic, id):
             "creation_date": reply.creation_date
         }
         replyout.append(simplereply)
-    
+
     if replyout == []:
         return render(request, "postreplies.html")
     else:
         return render(request, "postreplies.html", {"replies": replyout})
+
+def makepost(form, request, topic, replyto):
+    newpost = Post.objects.create(
+        pid=get_id(topic),
+        title=form.cleaned_data["title"],
+        pinned=False,
+        topic=topic,
+        body=form.cleaned_data["body"],
+        creation_date=timezone.now(),
+        reply_to=replyto
+    )
+
+    if not form.cleaned_data["image"] == None:
+        postimage = Image.objects.create(
+            file=request.FILES["image"],
+            filename=request.FILES["image"].name
+        )
+
+        postimage.save()
+        newpost.images.add(postimage)
+
+    newpost.save()
 
 def get_id(topic):
     try:

@@ -10,17 +10,17 @@
 
 <body>
     {% if replies %}
-        {% for reply in replies %}
-        <div class="replydiv">
-            <button class="postexpand" id="expandbtn-{{reply.id}}" onclick="loadreplies({{reply.id}});">+</button>
-            <div class="replyinfo">
-                <a onclick="loadpost({{reply.id}}); return true;" href="#{{reply.id}}" class="posttitle">{{reply.title}}</a>
-                <label class="extrainfo">[id: {{reply.id}}] [date: {{reply.creation_date}}]</label>
-                <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
-            </div>
-            <div class="postrepliesdiv" id="postreplies-{{reply.id}}"></div>
+    {% for reply in replies %}
+    <div class="replydiv">
+        <button class="postexpand" id="expandbtn-{{reply.id}}" onclick="loadreplies({{reply.id}});">+</button>
+        <div class="replyinfo">
+            <a onclick="loadpost({{reply.id}}); return true;" href="#{{reply.id}}" class="posttitle">{{reply.title}}</a>
+            <label class="extrainfo">[id: {{reply.id}}] [date: {{reply.creation_date}}]</label>
+            <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
         </div>
-        {% endfor %}
+        <div class="postrepliesdiv" id="postreplies-{{reply.id}}"></div>
+    </div>
+    {% endfor %}
     {% else %}
     <div class="replydiv">
         <label class="noreplytext">No Replies</label>

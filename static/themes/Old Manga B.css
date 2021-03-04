@@ -1,0 +1,31 @@
+#header,
+#post,
+#convos,
+#fullpostdiv {
+    background-color: #eef2ff;
+}
+
+.postdiv {
+    background-color: #d6daf0;
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+#backbtn,
+#postbtn,
+.fullpostreply {
+    color: #dd0000;
+}
+
+#headertitle {
+    color: #af0a0f;
+}
+
+.posttitle,
+.fullposttitle {
+    color: #0f0c5d;
+}
+
+.posttitle:visited {
+    color: #343358;
+}

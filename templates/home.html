@@ -8,11 +8,13 @@
     </head>
 
     <body>
-        <h1>{{forumtitle}}</h1>
-        <h3>Topics:</h3>
-        {% for topic in topics %}
-        <a href="/topic/{{topic}}">{{topic}}</a>
-        <br>
-        {% endfor %}
+        <div id="homediv">
+            <h1 id="hometitle">{{forumtitle}}</h1>
+            <h3 id="hometopicslist">Topics:</h3>
+            {% for topic in topics %}
+            <a class="topiclink" href="/topic/{{topic}}">{{topic}}</a>
+            <br>
+            {% endfor %}
+        </div>
     </body>
 </html>

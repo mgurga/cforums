@@ -18,11 +18,11 @@
 .fullposttitle,
 .fullpostbody,
 .noreplytext {
-    color: white;
+    color: lime;
 }
 
 #backbtn,
 #postbtn,
 .fullpostreply {
-    color: lightblue;
+    color: aqua;
 }

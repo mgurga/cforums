@@ -12,4 +12,4 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
     creation_date = models.DateTimeField()
-    images = models.ManyToManyField(Image)
+    images = models.ManyToManyField(Image, blank=True)

@@ -11,10 +11,12 @@
 <body>
     <div class="fullpostdiv">
         <p class="fullpostinfo">[id: {{post.pid}}] [posted: {{post.creation_date}}] [pinned: {{post.pinned}}] [topic: {{post.topic}}]</p>
+        {% if image %}
         <img class="fullpostimg" src="/{{image.file}}" width="100%">
+        {% endif %}
         <h1 class="fullposttitle">{{post.title}}</h1>
         <br>
-        <p class="fullpostbody">{{post.body}}</p>
+        <p class="fullpostbody">{{post.body|linebreaks}}</p>
         <br>
         <a class="fullpostreply" href="/topic/{{topic}}/{{post.pid}}/reply">Reply</a>
     </div>

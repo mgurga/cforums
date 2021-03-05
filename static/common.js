@@ -11,3 +11,10 @@ function loadhtml(element, url, onfinish) {
     }
     httpreq.send();
 }
+
+function getlocaltime(utctime, labelid) {
+    utcdate = new Date(utctime);
+    localtz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    localtime = utcdate.toLocaleString("en-US", {timeZone: localtz});
+    return localtime;
+}

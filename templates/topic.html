@@ -23,7 +23,13 @@
             <div class="postinfo">
                 <a onclick="loadpost({{post.id}}); return true;" href="#{{post.id}}"
                     class="posttitle">{{post.title}}</a>
-                <label class="extrainfo">[id: {{post.id}}] [date: {{post.creation_date}}]</label>
+                <label id="extrainfo-{{post.id}}" class="extrainfo">[id: {{post.id}}] [date: ;d;]</label>
+
+                <script>
+                    localtime = getlocaltime("{{post.creation_date|date:"r"}}", "extrainfo-{{post.id}}");
+                    document.getElementById("extrainfo-{{post.id}}").innerHTML = 
+                        document.getElementById("extrainfo-{{post.id}}").innerHTML.replace(";d;", localtime);
+                </script>
                 <!-- <a href="/topic/{{topic}}/{{post.id}}/reply">Reply</a> -->
             </div>
             <br class="postnewline">

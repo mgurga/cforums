@@ -10,7 +10,7 @@ from .models import Post
 from .models import Image
 
 def home_view(request):
-    return render(request, "home.html", {"topics": settings.TOPICS, "forumtitle": settings.TITLE})
+    return render(request, "home.html", {"settings": settings})
 
 def post_form(request, topic):
     if request.method == "POST":

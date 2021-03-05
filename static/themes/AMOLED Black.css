@@ -1,7 +1,8 @@
 #header,
 #post,
 #convos,
-#fullpostdiv {
+#fullpostdiv,
+#homediv {
     background-color: black;
 }
 
@@ -17,12 +18,15 @@
 .fullpostinfo,
 .fullposttitle,
 .fullpostbody,
-.noreplytext {
+.noreplytext,
+#hometitle,
+#hometopicslist {
     color: white;
 }
 
 #backbtn,
 #postbtn,
-.fullpostreply {
+.fullpostreply,
+.topiclink {
     color: lightblue;
 }

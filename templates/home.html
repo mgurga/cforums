@@ -4,17 +4,30 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{forumtitle}}</title>
+        <title>{{settings.TITLE}}</title>
     </head>
 
     <body>
         <div id="homediv">
-            <h1 id="hometitle">{{forumtitle}}</h1>
+            {% include "themesmenu.html" with settings=settings %}
+
+            <h1 id="hometitle">{{settings.TITLE}}</h1>
             <h3 id="hometopicslist">Topics:</h3>
-            {% for topic in topics %}
+            {% for topic in settings.TOPICS %}
             <a class="topiclink" href="/topic/{{topic}}">{{topic}}</a>
             <br>
             {% endfor %}
         </div>
     </body>
+
+    <style>
+        body,
+        html,
+        #homediv {
+            position: fixed;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </html>

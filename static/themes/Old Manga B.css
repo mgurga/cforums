@@ -1,7 +1,8 @@
 #header,
 #post,
 #convos,
-#fullpostdiv {
+#fullpostdiv,
+#homediv {
     background-color: #eef2ff;
 }
 
@@ -17,12 +18,15 @@
     color: #dd0000;
 }
 
-#headertitle {
+#headertitle,
+#hometitle,
+#hometopicslist {
     color: #af0a0f;
 }
 
 .posttitle,
-.fullposttitle {
+.fullposttitle,
+.topiclink {
     color: #0f0c5d;
 }
 

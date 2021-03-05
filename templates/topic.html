@@ -23,7 +23,7 @@
             <div class="postinfo">
                 <a onclick="loadpost({{post.id}}); return true;" href="#{{post.id}}"
                     class="posttitle">{{post.title}}</a>
-                <label id="extrainfo-{{post.id}}" class="extrainfo">[id: {{post.id}}] [date: ;d;]</label>
+                <label id="extrainfo-{{post.id}}" class="extrainfo">[id: {{post.id}}] [date: ;d;] [replies:{{post.replies}}]</label>
 
                 <script>
                     localtime = getlocaltime("{{post.creation_date|date:"r"}}");
@@ -46,14 +46,12 @@
     Split(["#convos", "#post"]);
 
     function loadpost(id) {
-        console.log("loading post id " + id + " in right pane");
         loadhtml(document.getElementById("post"),
             window.location.origin + "/topic/{{topic}}/" + id,
             function() {});
     }
 
     function loadreplies(id) {
-        console.log("loading replies to post id " + id);
         if(document.getElementById("expandbtn-" + id).innerHTML == "-") {
             document.getElementById("postreplies-" + id).innerHTML = "";
             document.getElementById("expandbtn-" + id).innerHTML = "+";

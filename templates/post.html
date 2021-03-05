@@ -24,7 +24,6 @@
 </body>
 
 <script>
-    console.log("changing post localtime");
     localtime = getlocaltime("{{post.creation_date|date:"r"}}");
     document.getElementById("fullpostinfo").innerHTML = document.getElementById("fullpostinfo").innerHTML.replace(";d;", localtime);
 </script>

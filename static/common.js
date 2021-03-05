@@ -21,6 +21,6 @@ function loadhtml(element, url, onfinish) {
 function getlocaltime(utctime) {
     utcdate = new Date(utctime);
     localtz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    localtime = utcdate.toLocaleString("en-US", {timeZone: localtz});
+    localtime = utcdate.toLocaleString(navigator.language, {timeZone: localtz});
     return localtime;
 }

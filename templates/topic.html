@@ -26,7 +26,7 @@
                 <label id="extrainfo-{{post.id}}" class="extrainfo">[id: {{post.id}}] [date: ;d;]</label>
 
                 <script>
-                    localtime = getlocaltime("{{post.creation_date|date:"r"}}", "extrainfo-{{post.id}}");
+                    localtime = getlocaltime("{{post.creation_date|date:"r"}}");
                     document.getElementById("extrainfo-{{post.id}}").innerHTML = 
                         document.getElementById("extrainfo-{{post.id}}").innerHTML.replace(";d;", localtime);
                 </script>

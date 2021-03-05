@@ -4,6 +4,12 @@ function loadhtml(element, url, onfinish) {
     httpreq.onload = function () {
         if (this.status >= 200 && this.status < 400) {
             element.innerHTML = this.response;
+
+            scripttags = element.getElementsByTagName("script");
+            for(var i = 0; i < scripttags.length; i++) {
+                eval(scripttags[i].innerHTML);
+            }
+
             onfinish();
         } else {
             console.log("error loading html");
@@ -12,7 +18,7 @@ function loadhtml(element, url, onfinish) {
     httpreq.send();
 }
 
-function getlocaltime(utctime, labelid) {
+function getlocaltime(utctime) {
     utcdate = new Date(utctime);
     localtz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     localtime = utcdate.toLocaleString("en-US", {timeZone: localtz});

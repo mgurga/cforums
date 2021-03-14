@@ -129,7 +129,7 @@ STATICFILES_DIRS = (
 # CForums Settings
 
 TITLE = 'Demo Forum'
-TOPICS = ['technology', 'anime', 'television']
+TOPICS = ['technology', 'gaming', 'television']
 DEFAULTTHEME = 'Piercing White'
 UPLOADSIZELIMIT = 1 * 1024 * 1024 # size limit in bytes
 

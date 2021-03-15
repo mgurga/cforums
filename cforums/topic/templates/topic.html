@@ -4,7 +4,6 @@
 <head>
     {% include "head.html"%}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
     <script src="/static/common.js"></script>
 
     <title>{{topic}}</title>
@@ -25,8 +24,6 @@
 </body>
 
 <script>
-    Split(["#convos", "#post"]);
-
     function loadpost(id) {
         loadhtml(document.getElementById("post"),
             window.location.origin + "/topic/{{topic}}/" + id,
@@ -49,13 +46,12 @@
 </script>
 
 <style>
-    .split,
-    .gutter.gutter-horizontal {
-        float: left;
-    }
-
-    .gutter.gutter-horizontal {
-        cursor: ew-resize;
+    .split {
+        resize: horizontal;
+        overflow: auto;
+        border: 1px solid;
+        display: inline-block;
+        width: 49.5%;
     }
 
     html,
@@ -76,6 +72,7 @@
     .postexpand,
     .postinfo {
         display: inline-block;
+        resize: vertical;
     }
 
     .postpreviewimg {

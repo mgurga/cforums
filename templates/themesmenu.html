@@ -20,7 +20,7 @@
         }
     </style>
 
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0-rc.0/dist/js.cookie.min.js"></script>
 
     <script>
         if(Cookies.get("theme") == undefined) {
@@ -34,7 +34,6 @@
         }
         
         function settheme(theme) {
-            console.log("changing theme to " + theme);
             Cookies.set("theme", theme);
             document.getElementById("csslink").href = window.location.origin + "/static/themes/" + theme + ".css";
             dropdown = document.getElementById("themesdropdown");

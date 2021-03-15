@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    {% include "head.html"%}
-    <title>Post Replies</title>
-</head>
-
-<body>
-    {% if replies %}
-    {% for reply in replies %}
-    <div class="replydiv">
-        {% include "smallpost.html" with post=reply %}
-    </div>
-    {% endfor %}
-    {% else %}
-    <div class="replydiv">
-        <label class="noreplytext">No Replies</label>
-    </div>
-    {% endif %}
-</body>
-
-</html>
+{% if replies %}
+{% for reply in replies %}
+<div class="replydiv">
+    {% include "smallpost.html" with post=reply %}
+</div>
+{% endfor %}
+{% else %}
+<div class="replydiv">
+    <label class="noreplytext">No Replies</label>
+</div>
+{% endif %}

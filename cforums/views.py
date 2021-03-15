@@ -43,10 +43,12 @@ def replies_view(request, topic, id):
     replies = Post.objects.filter(reply_to=id)
     replyout = []
     for reply in replies:
+        replynum = len(Post.objects.filter(reply_to=reply.pid))
         simplereply = {
             "title": reply.title,
             "id": reply.pid,
-            "creation_date": reply.creation_date
+            "creation_date": reply.creation_date,
+            "replies": replynum
         }
         replyout.append(simplereply)
 

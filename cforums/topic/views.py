@@ -11,9 +11,20 @@ from cforums.models import Image
 class TopicView(View):
     def get(self, request, topic):
         posts = []
-        postobjs = Post.objects.filter(topic=topic, reply_to=0).order_by("-creation_date")
+        pinnedobjs = Post.objects.filter(topic=topic, reply_to=0, pinned=True).order_by("-creation_date")
+        postobjs = Post.objects.filter(topic=topic, reply_to=0, pinned=False).order_by("-creation_date")
 
         try:
+            for p in pinnedobjs:
+                post = {
+                    "title": p.title,
+                    "creation_date": p.creation_date,
+                    "id": p.pid,
+                    "replies": len(Post.objects.filter(topic=topic, reply_to=p.pid))
+                }
+
+                posts.append(post)
+
             for p in postobjs:
                 post = {
                     "title": p.title,

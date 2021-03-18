@@ -40,10 +40,10 @@ def post_view(request, topic, id):
     return render(request, "post.html", {"topic": topic, "post": post, "image": images})
 
 def replies_view(request, topic, id):
-    replies = Post.objects.filter(reply_to=id)
+    replies = Post.objects.filter(reply_to=id, topic=topic)
     replyout = []
     for reply in replies:
-        replynum = len(Post.objects.filter(reply_to=reply.pid))
+        replynum = len(Post.objects.filter(reply_to=reply.pid, topic=topic))
         simplereply = {
             "title": reply.title,
             "id": reply.pid,

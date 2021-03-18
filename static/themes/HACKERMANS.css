@@ -20,7 +20,8 @@
 .fullpostbody,
 .noreplytext,
 #hometitle,
-#hometopicslist {
+#hometopicslist,
+#fullpostinfo {
     color: lime;
 }
 

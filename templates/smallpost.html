@@ -2,8 +2,12 @@
     <button class="postexpand" id="expandbtn-{{post.id}}" onclick="loadreplies({{post.id}});">+</button>
     <div class="postinfo">
         <a onclick="loadpost({{post.id}}); return true;" href="#{{post.id}}" class="posttitle">{{post.title}}</a>
-        <label id="extrainfo-{{post.id}}" class="extrainfo">[id: {{post.id}}] [date: ;d;]
-            [replies:{{post.replies}}]</label>
+
+        {% if post.pinned %}
+        <img src="/static/assets/pin.png" class="pinimage">
+        {% endif %}
+
+        <label id="extrainfo-{{post.id}}" class="extrainfo">[id: {{post.id}}] [date: ;d;] [replies:{{post.replies}}]</label>
 
         <script>
             localtime = getlocaltime("{{post.creation_date|date:"r"}}");

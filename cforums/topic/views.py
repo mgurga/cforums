@@ -20,7 +20,8 @@ class TopicView(View):
                     "title": p.title,
                     "creation_date": p.creation_date,
                     "id": p.pid,
-                    "replies": len(Post.objects.filter(topic=topic, reply_to=p.pid))
+                    "replies": len(Post.objects.filter(topic=topic, reply_to=p.pid)),
+                    "pinned": True
                 }
 
                 posts.append(post)
@@ -30,7 +31,8 @@ class TopicView(View):
                     "title": p.title,
                     "creation_date": p.creation_date,
                     "id": p.pid,
-                    "replies": len(Post.objects.filter(topic=topic, reply_to=p.pid))
+                    "replies": len(Post.objects.filter(topic=topic, reply_to=p.pid)),
+                    "pinned": False
                 }
 
                 posts.append(post)
